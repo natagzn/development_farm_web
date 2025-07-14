@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { TonWalletConnect } from './components/TonWalletConnect';
+
 
 // @ts-ignore
 const tg = window.Telegram?.WebApp;
@@ -26,6 +28,9 @@ function App() {
 
       <h1>Привіт, {userName} 👋</h1>
       <p>Це Telegram WebApp на React</p>
+
+       <h1>Авторизуйтесь через TON Wallet</h1>
+      <TonWalletConnect />
     </div>
   );
 }
