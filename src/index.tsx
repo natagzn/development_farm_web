@@ -1,22 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-import {
-  TonConnectUIProvider
-} from '@tonconnect/ui-react';
+import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-     <TonConnectUIProvider manifestUrl="https://6052c7198b47.ngrok-free.app/tonconnect-manifest.json">
-        <App />
-     </TonConnectUIProvider>
-  </React.StrictMode>
+    <TonConnectUIProvider manifestUrl="https://3766685ba549.ngrok-free.app/tonconnect-manifest.json">
+      <App />
+    </TonConnectUIProvider>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

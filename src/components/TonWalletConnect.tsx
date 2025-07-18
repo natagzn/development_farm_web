@@ -1,32 +1,37 @@
+// TonWalletConnect.tsx
 import React, { useEffect } from "react";
 import {
   TonConnectButton,
   useTonConnectUI,
-  useTonWallet
+  useTonWallet,
 } from "@tonconnect/ui-react";
 
-export const TonWalletConnect = () => {
+export const TonWalletConnect = ({ telegramUser }: { telegramUser: any }) => {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
 
   useEffect(() => {
-    if (wallet?.account?.address) {
+    if (wallet?.account?.address && telegramUser?.id) {
       fetch("http://localhost:3001/auth/ton-connect", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          address: wallet.account.address
-        })
+          publicKey: wallet.account.address,
+          telegramUser,
+        }),
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           console.log("Authorized!", data);
-          localStorage.setItem("auth_token", data.token); 
+          localStorage.setItem("auth_token", data.token);
+        })
+        .catch((err) => {
+          console.error("Auth error:", err);
         });
     }
-  }, [wallet?.account?.address]);
+  }, [wallet?.account?.address, telegramUser]);
 
   return <TonConnectButton />;
 };
